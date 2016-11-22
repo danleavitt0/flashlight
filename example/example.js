@@ -7,7 +7,7 @@
   // Set the configuration for your app
   // TODO: Replace with your project's config object
   var config = {
-    databaseURL: "https://flashlight.firebaseio.com"
+    databaseURL: "https://artbot-dev.firebaseio.com"
   };
 
   // TODO: Replace this with the path to your ElasticSearch queue
@@ -56,6 +56,7 @@
   }
 
   function showResults(snap) {
+    console.log(snap.val())
     if( !snap.exists() ) { return; } // wait until we get data
     var dat = snap.val();
     snap.ref.off('value', showResults);

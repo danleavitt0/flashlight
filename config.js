@@ -9,6 +9,8 @@
 /** Firebase Settings
  ***************************************************/
 
+process.env.FB_NAME = 'artbot-dev'
+
 // Your Firebase instance where we will listen and write search results
 exports.FB_URL = 'https://' + process.env.FB_NAME + '.firebaseio.com';
 
@@ -20,7 +22,7 @@ exports.FB_RES = process.env.FB_RES || 'search/response';
 
 // See https://firebase.google.com/docs/server/setup. for how to
 // auto-generate this config json ...
-exports.FB_SERVICEACCOUNT = process.env.FB_SERVICEJSONPATH;
+exports.FB_SERVICEACCOUNT = process.env.FB_SERVICEJSONPATH || './serviceAccount.json';
 
 /** ElasticSearch Settings
  *********************************************/
@@ -63,14 +65,17 @@ exports.paths = [
    {
       path : "users",
       index: "firebase",
-      type : "user"
+      type : "users"
    },
    {
-      path  : "messages",
+      path  : "games",
       index : "firebase",
-      type  : "message",
-      fields: ['msg', 'name'],
-      filter: function(data) { return data.name !== 'system'; }
+      type  : "games"
+   },
+   {
+      path  : "playlists",
+      index : "firebase",
+      type  : "playlists"
    }
 ];
 
